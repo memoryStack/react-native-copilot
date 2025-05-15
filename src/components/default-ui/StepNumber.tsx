@@ -4,12 +4,15 @@ import { useCopilot } from "../../contexts/CopilotProvider";
 
 import { styles } from "../style";
 
-export const StepNumber: FunctionComponent<unknown> = () => {
+export const StepNumber: FunctionComponent<unknown> = ({
+  containerStyles,
+  textStyles
+}) => {
   const { currentStepNumber } = useCopilot();
 
   return (
-    <View style={styles.stepNumber}>
-      <Text style={styles.stepNumberText}>{currentStepNumber}</Text>
+    <View style={[styles.stepNumber, containerStyles]}>
+      <Text style={[styles.stepNumberText, textStyles]}>{currentStepNumber}</Text>
     </View>
   );
 };

@@ -8,7 +8,7 @@ import { styles } from "../style";
 import type { TooltipProps } from "../../types";
 import { useCopilot } from "../../contexts/CopilotProvider";
 
-export const Tooltip = ({ labels }: TooltipProps) => {
+export const Tooltip = ({ labels, customStyles }: TooltipProps) => {
   const { goToNext, goToPrev, stop, currentStep, isFirstStep, isLastStep } =
     useCopilot();
 
@@ -25,29 +25,29 @@ export const Tooltip = ({ labels }: TooltipProps) => {
 
   return (
     <View>
-      <View style={styles.tooltipContainer}>
-        <Text testID="stepDescription" style={styles.tooltipText}>
+      <View style={[styles.tooltipContainer, customStyles?.container]}>
+        <Text testID="stepDescription" style={[styles.tooltipText, customStyles?.description]}>
           {currentStep?.text}
         </Text>
       </View>
-      <View style={[styles.bottomBar]}>
+      <View style={[styles.bottomBar, customStyles?.footer]}>
         {!isLastStep ? (
           <TouchableOpacity onPress={handleStop}>
-            <Button>{labels.skip}</Button>
+            <Button style={customStyles?.skipText}>{labels.skip}</Button>
           </TouchableOpacity>
         ) : null}
         {!isFirstStep ? (
           <TouchableOpacity onPress={handlePrev}>
-            <Button>{labels.previous}</Button>
+            <Button style={customStyles?.previousText}>{labels.previous}</Button>
           </TouchableOpacity>
         ) : null}
         {!isLastStep ? (
           <TouchableOpacity onPress={handleNext}>
-            <Button>{labels.next}</Button>
+            <Button style={customStyles?.nextText}>{labels.next}</Button>
           </TouchableOpacity>
         ) : (
           <TouchableOpacity onPress={handleStop}>
-            <Button>{labels.finish}</Button>
+            <Button style={customStyles?.finishText}>{labels.finish}</Button>
           </TouchableOpacity>
         )}
       </View>

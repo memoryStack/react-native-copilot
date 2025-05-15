@@ -3,6 +3,7 @@ import type {
   LayoutRectangle,
   NativeMethods,
   ViewStyle,
+  TextStyle,
 } from "react-native";
 
 export type WalktroughedComponent = NativeMethods & React.ComponentType<any>;
@@ -44,6 +45,15 @@ export type Labels = Partial<
 
 export interface TooltipProps {
   labels: Labels;
+  customStyles?: {
+    container?: ViewStyle,
+    description?: TextStyle,
+    footer?: ViewStyle,
+    skipText?: TextStyle,
+    previousText?: TextStyle,
+    nextText?: TextStyle,
+    finishText?: TextStyle,
+  }
 }
 
 export interface MaskProps {
@@ -80,4 +90,11 @@ export interface CopilotOptions {
   margin?: number
   stopOnOutsideClick?: boolean;
   backdropColor?: string;
+  customStyles?: {
+    stepNumber?: {
+      containerStyles?: ViewStyle,
+      textStyles?: ViewStyle,
+    },
+    tooltip?: TooltipProps['customStyles']
+  }
 }

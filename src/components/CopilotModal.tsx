@@ -70,6 +70,7 @@ export const CopilotModal = forwardRef<CopilotModalHandle, Props>(
       arrowColor = "#fff",
       arrowSize = ARROW_SIZE,
       margin = MARGIN,
+      customStyles,
     },
     ref,
   ) {
@@ -352,7 +353,10 @@ export const CopilotModal = forwardRef<CopilotModalHandle, Props>(
               },
             ]}
           >
-            <StepNumberComponent />
+            <StepNumberComponent
+              containerStyles={customStyles?.stepNumber?.containerStyles}
+              textStyles={customStyles?.stepNumber?.textStyles}
+            />
           </Animated.View>
           {!!arrowSize && (
             <Animated.View key="arrow" style={[styles.arrow, arrowStyles]} />
@@ -361,7 +365,7 @@ export const CopilotModal = forwardRef<CopilotModalHandle, Props>(
             key="tooltip"
             style={[styles.tooltip, tooltipStyles, tooltipStyle]}
           >
-            <TooltipComponent labels={labels} />
+            <TooltipComponent labels={labels} customStyles={customStyles?.tooltip} />
           </Animated.View>
         </>
       );
