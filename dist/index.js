@@ -448,7 +448,7 @@ var Button = (_a) => {
 
 // src/components/default-ui/Tooltip.tsx
 init_style();
-var Tooltip = ({ labels, customStyles }) => {
+var Tooltip = ({ labels, customStyles, showFooter }) => {
   const { goToNext, goToPrev, stop, currentStep, isFirstStep, isLastStep } = useCopilot();
   const handleStop = () => {
     void stop();
@@ -459,7 +459,7 @@ var Tooltip = ({ labels, customStyles }) => {
   const handlePrev = () => {
     void goToPrev();
   };
-  return /* @__PURE__ */ import_react2.default.createElement(import_react_native3.View, null, /* @__PURE__ */ import_react2.default.createElement(import_react_native3.View, { style: [styles.tooltipContainer, customStyles == null ? void 0 : customStyles.container] }, /* @__PURE__ */ import_react2.default.createElement(import_react_native3.Text, { testID: "stepDescription", style: [styles.tooltipText, customStyles == null ? void 0 : customStyles.description] }, currentStep == null ? void 0 : currentStep.text)), /* @__PURE__ */ import_react2.default.createElement(import_react_native3.View, { style: [styles.bottomBar, customStyles == null ? void 0 : customStyles.footer] }, !isLastStep ? /* @__PURE__ */ import_react2.default.createElement(import_react_native3.TouchableOpacity, { onPress: handleStop }, /* @__PURE__ */ import_react2.default.createElement(Button, { style: customStyles == null ? void 0 : customStyles.skipText }, labels.skip)) : null, !isFirstStep ? /* @__PURE__ */ import_react2.default.createElement(import_react_native3.TouchableOpacity, { onPress: handlePrev }, /* @__PURE__ */ import_react2.default.createElement(Button, { style: customStyles == null ? void 0 : customStyles.previousText }, labels.previous)) : null, !isLastStep ? /* @__PURE__ */ import_react2.default.createElement(import_react_native3.TouchableOpacity, { onPress: handleNext }, /* @__PURE__ */ import_react2.default.createElement(Button, { style: customStyles == null ? void 0 : customStyles.nextText }, labels.next)) : /* @__PURE__ */ import_react2.default.createElement(import_react_native3.TouchableOpacity, { onPress: handleStop }, /* @__PURE__ */ import_react2.default.createElement(Button, { style: customStyles == null ? void 0 : customStyles.finishText }, labels.finish))));
+  return /* @__PURE__ */ import_react2.default.createElement(import_react_native3.View, null, /* @__PURE__ */ import_react2.default.createElement(import_react_native3.View, { style: [styles.tooltipContainer, customStyles == null ? void 0 : customStyles.container] }, /* @__PURE__ */ import_react2.default.createElement(import_react_native3.Text, { testID: "stepDescription", style: [styles.tooltipText, customStyles == null ? void 0 : customStyles.description] }, currentStep == null ? void 0 : currentStep.text)), showFooter ? /* @__PURE__ */ import_react2.default.createElement(import_react_native3.View, { style: [styles.bottomBar, customStyles == null ? void 0 : customStyles.footer] }, !isLastStep ? /* @__PURE__ */ import_react2.default.createElement(import_react_native3.TouchableOpacity, { onPress: handleStop }, /* @__PURE__ */ import_react2.default.createElement(Button, { style: customStyles == null ? void 0 : customStyles.skipText }, labels.skip)) : null, !isFirstStep ? /* @__PURE__ */ import_react2.default.createElement(import_react_native3.TouchableOpacity, { onPress: handlePrev }, /* @__PURE__ */ import_react2.default.createElement(Button, { style: customStyles == null ? void 0 : customStyles.previousText }, labels.previous)) : null, !isLastStep ? /* @__PURE__ */ import_react2.default.createElement(import_react_native3.TouchableOpacity, { onPress: handleNext }, /* @__PURE__ */ import_react2.default.createElement(Button, { style: customStyles == null ? void 0 : customStyles.nextText }, labels.next)) : /* @__PURE__ */ import_react2.default.createElement(import_react_native3.TouchableOpacity, { onPress: handleStop }, /* @__PURE__ */ import_react2.default.createElement(Button, { style: customStyles == null ? void 0 : customStyles.finishText }, labels.finish))) : null);
 };
 
 // src/components/CopilotModal.tsx
@@ -494,7 +494,8 @@ var CopilotModal = (0, import_react5.forwardRef)(
     arrowColor = "#fff",
     arrowSize = ARROW_SIZE,
     margin = MARGIN,
-    customStyles
+    customStyles,
+    showFooter = true
   }, ref) {
     const { stop, currentStep, visible } = useCopilot();
     const [tooltipStyles, setTooltipStyles] = (0, import_react5.useState)({});
@@ -751,7 +752,7 @@ var CopilotModal = (0, import_react5.forwardRef)(
           key: "tooltip",
           style: [styles.tooltip, tooltipStyles, tooltipStyle]
         },
-        /* @__PURE__ */ import_react5.default.createElement(TooltipComponent, { labels, customStyles: customStyles == null ? void 0 : customStyles.tooltip })
+        /* @__PURE__ */ import_react5.default.createElement(TooltipComponent, { labels, showFooter, customStyles: customStyles == null ? void 0 : customStyles.tooltip })
       ));
     }
   }

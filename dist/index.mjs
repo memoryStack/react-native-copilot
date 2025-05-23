@@ -456,7 +456,7 @@ var Button = (_a) => {
 
 // src/components/default-ui/Tooltip.tsx
 init_style();
-var Tooltip = ({ labels, customStyles }) => {
+var Tooltip = ({ labels, customStyles, showFooter }) => {
   const { goToNext, goToPrev, stop, currentStep, isFirstStep, isLastStep } = useCopilot();
   const handleStop = () => {
     void stop();
@@ -467,7 +467,7 @@ var Tooltip = ({ labels, customStyles }) => {
   const handlePrev = () => {
     void goToPrev();
   };
-  return /* @__PURE__ */ React2.createElement(View2, null, /* @__PURE__ */ React2.createElement(View2, { style: [styles.tooltipContainer, customStyles == null ? void 0 : customStyles.container] }, /* @__PURE__ */ React2.createElement(Text2, { testID: "stepDescription", style: [styles.tooltipText, customStyles == null ? void 0 : customStyles.description] }, currentStep == null ? void 0 : currentStep.text)), /* @__PURE__ */ React2.createElement(View2, { style: [styles.bottomBar, customStyles == null ? void 0 : customStyles.footer] }, !isLastStep ? /* @__PURE__ */ React2.createElement(TouchableOpacity, { onPress: handleStop }, /* @__PURE__ */ React2.createElement(Button, { style: customStyles == null ? void 0 : customStyles.skipText }, labels.skip)) : null, !isFirstStep ? /* @__PURE__ */ React2.createElement(TouchableOpacity, { onPress: handlePrev }, /* @__PURE__ */ React2.createElement(Button, { style: customStyles == null ? void 0 : customStyles.previousText }, labels.previous)) : null, !isLastStep ? /* @__PURE__ */ React2.createElement(TouchableOpacity, { onPress: handleNext }, /* @__PURE__ */ React2.createElement(Button, { style: customStyles == null ? void 0 : customStyles.nextText }, labels.next)) : /* @__PURE__ */ React2.createElement(TouchableOpacity, { onPress: handleStop }, /* @__PURE__ */ React2.createElement(Button, { style: customStyles == null ? void 0 : customStyles.finishText }, labels.finish))));
+  return /* @__PURE__ */ React2.createElement(View2, null, /* @__PURE__ */ React2.createElement(View2, { style: [styles.tooltipContainer, customStyles == null ? void 0 : customStyles.container] }, /* @__PURE__ */ React2.createElement(Text2, { testID: "stepDescription", style: [styles.tooltipText, customStyles == null ? void 0 : customStyles.description] }, currentStep == null ? void 0 : currentStep.text)), showFooter ? /* @__PURE__ */ React2.createElement(View2, { style: [styles.bottomBar, customStyles == null ? void 0 : customStyles.footer] }, !isLastStep ? /* @__PURE__ */ React2.createElement(TouchableOpacity, { onPress: handleStop }, /* @__PURE__ */ React2.createElement(Button, { style: customStyles == null ? void 0 : customStyles.skipText }, labels.skip)) : null, !isFirstStep ? /* @__PURE__ */ React2.createElement(TouchableOpacity, { onPress: handlePrev }, /* @__PURE__ */ React2.createElement(Button, { style: customStyles == null ? void 0 : customStyles.previousText }, labels.previous)) : null, !isLastStep ? /* @__PURE__ */ React2.createElement(TouchableOpacity, { onPress: handleNext }, /* @__PURE__ */ React2.createElement(Button, { style: customStyles == null ? void 0 : customStyles.nextText }, labels.next)) : /* @__PURE__ */ React2.createElement(TouchableOpacity, { onPress: handleStop }, /* @__PURE__ */ React2.createElement(Button, { style: customStyles == null ? void 0 : customStyles.finishText }, labels.finish))) : null);
 };
 
 // src/components/CopilotModal.tsx
@@ -502,7 +502,8 @@ var CopilotModal = forwardRef(
     arrowColor = "#fff",
     arrowSize = ARROW_SIZE,
     margin = MARGIN,
-    customStyles
+    customStyles,
+    showFooter = true
   }, ref) {
     const { stop, currentStep, visible } = useCopilot();
     const [tooltipStyles, setTooltipStyles] = useState3({});
@@ -759,7 +760,7 @@ var CopilotModal = forwardRef(
           key: "tooltip",
           style: [styles.tooltip, tooltipStyles, tooltipStyle]
         },
-        /* @__PURE__ */ React5.createElement(TooltipComponent, { labels, customStyles: customStyles == null ? void 0 : customStyles.tooltip })
+        /* @__PURE__ */ React5.createElement(TooltipComponent, { labels, showFooter, customStyles: customStyles == null ? void 0 : customStyles.tooltip })
       ));
     }
   }

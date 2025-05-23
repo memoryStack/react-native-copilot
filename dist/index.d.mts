@@ -24,6 +24,7 @@ type SvgMaskPathFunction = (args: {
 type Labels = Partial<Record<"skip" | "previous" | "next" | "finish", string>>;
 interface TooltipProps {
     labels: Labels;
+    showFooter?: boolean;
     customStyles?: {
         container?: ViewStyle;
         description?: TextStyle;
@@ -51,6 +52,7 @@ interface CopilotOptions {
     margin?: number;
     stopOnOutsideClick?: boolean;
     backdropColor?: string;
+    showFooter?: boolean;
     customStyles?: {
         stepNumber?: {
             containerStyles?: ViewStyle;
@@ -97,7 +99,7 @@ declare const useCopilot: () => CopilotContextType;
 
 declare const DefaultUI: {
     StepNumber: React$1.FunctionComponent<unknown>;
-    Tooltip: ({ labels, customStyles }: TooltipProps) => React$1.JSX.Element;
+    Tooltip: ({ labels, customStyles, showFooter }: TooltipProps) => React$1.JSX.Element;
 };
 
 export { type CopilotOptions as CopilotProps, CopilotProvider, CopilotStep, DefaultUI, type TooltipProps, useCopilot, walkthroughable };
