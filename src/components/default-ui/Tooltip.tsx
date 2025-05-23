@@ -8,7 +8,7 @@ import { styles } from "../style";
 import type { TooltipProps } from "../../types";
 import { useCopilot } from "../../contexts/CopilotProvider";
 
-export const Tooltip = ({ labels, customStyles }: TooltipProps) => {
+export const Tooltip = ({ labels, customStyles, showFooter }: TooltipProps) => {
   const { goToNext, goToPrev, stop, currentStep, isFirstStep, isLastStep } =
     useCopilot();
 
@@ -30,27 +30,31 @@ export const Tooltip = ({ labels, customStyles }: TooltipProps) => {
           {currentStep?.text}
         </Text>
       </View>
-      <View style={[styles.bottomBar, customStyles?.footer]}>
-        {!isLastStep ? (
-          <TouchableOpacity onPress={handleStop}>
-            <Button style={customStyles?.skipText}>{labels.skip}</Button>
-          </TouchableOpacity>
-        ) : null}
-        {!isFirstStep ? (
-          <TouchableOpacity onPress={handlePrev}>
-            <Button style={customStyles?.previousText}>{labels.previous}</Button>
-          </TouchableOpacity>
-        ) : null}
-        {!isLastStep ? (
-          <TouchableOpacity onPress={handleNext}>
-            <Button style={customStyles?.nextText}>{labels.next}</Button>
-          </TouchableOpacity>
-        ) : (
-          <TouchableOpacity onPress={handleStop}>
-            <Button style={customStyles?.finishText}>{labels.finish}</Button>
-          </TouchableOpacity>
-        )}
-      </View>
+      {
+        showFooter ?
+          <View style={[styles.bottomBar, customStyles?.footer]}>
+            {!isLastStep ? (
+              <TouchableOpacity onPress={handleStop}>
+                <Button style={customStyles?.skipText}>{labels.skip}</Button>
+              </TouchableOpacity>
+            ) : null}
+            {!isFirstStep ? (
+              <TouchableOpacity onPress={handlePrev}>
+                <Button style={customStyles?.previousText}>{labels.previous}</Button>
+              </TouchableOpacity>
+            ) : null}
+            {!isLastStep ? (
+              <TouchableOpacity onPress={handleNext}>
+                <Button style={customStyles?.nextText}>{labels.next}</Button>
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity onPress={handleStop}>
+                <Button style={customStyles?.finishText}>{labels.finish}</Button>
+              </TouchableOpacity>
+            )}
+          </View>
+        : null
+      }
     </View>
   );
 };

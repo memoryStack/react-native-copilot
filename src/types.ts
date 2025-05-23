@@ -45,6 +45,7 @@ export type Labels = Partial<
 
 export interface TooltipProps {
   labels: Labels;
+  showFooter?: boolean
   customStyles?: {
     container?: ViewStyle,
     description?: TextStyle,
@@ -90,6 +91,7 @@ export interface CopilotOptions {
   margin?: number
   stopOnOutsideClick?: boolean;
   backdropColor?: string;
+  showFooter?: boolean;
   customStyles?: {
     stepNumber?: {
       containerStyles?: ViewStyle,

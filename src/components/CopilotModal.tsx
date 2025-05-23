@@ -71,6 +71,7 @@ export const CopilotModal = forwardRef<CopilotModalHandle, Props>(
       arrowSize = ARROW_SIZE,
       margin = MARGIN,
       customStyles,
+      showFooter = true,
     },
     ref,
   ) {
@@ -365,7 +366,7 @@ export const CopilotModal = forwardRef<CopilotModalHandle, Props>(
             key="tooltip"
             style={[styles.tooltip, tooltipStyles, tooltipStyle]}
           >
-            <TooltipComponent labels={labels} customStyles={customStyles?.tooltip} />
+            <TooltipComponent labels={labels} showFooter={showFooter} customStyles={customStyles?.tooltip} />
           </Animated.View>
         </>
       );
